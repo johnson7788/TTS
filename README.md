@@ -2,12 +2,11 @@
 " width="320" height="95" /></p>
 
 <img src="https://travis-ci.org/mozilla/TTS.svg?branch=dev"/>
+该项目是[Mozilla Common Voice]（https://voice.mozilla.org/en）的一部分。 TTS的目标是基于深度学习的Text2Speech引擎，其成本低且质量高。 首先，您可以从[此处]（https://soundcloud.com/user-565970875/commonvoice-loc-sens-attn）听到示例声音。
 
-This project is a part of [Mozilla Common Voice](https://voice.mozilla.org/en). TTS aims a deep learning based Text2Speech engine, low in cost and high in quality. To begin with, you can hear a sample generated voice from [here](https://soundcloud.com/user-565970875/commonvoice-loc-sens-attn).
+TTS包括两种基于[Tacotron]（https://arxiv.org/abs/1703.10135）和[Tacotron2]（https://arxiv.org/abs/1712.05884）的不同模型实现。 Tacotron体积更小，效率更高且更容易训练，但Tacotron2提供了更好的效果，尤其是与Neural声码器结合使用时。 因此，请根据您的项目要求进行选择。
 
-TTS includes two different model implementations which are based on [Tacotron](https://arxiv.org/abs/1703.10135) and [Tacotron2](https://arxiv.org/abs/1712.05884). Tacotron is smaller, efficient and easier to train but Tacotron2 provides better results, especially when it is combined with a Neural vocoder. Therefore, choose depending on your project requirements.
-
-If you are new, you can also find [here](http://www.erogol.com/text-speech-deep-learning-architectures/) a brief post about TTS architectures and their comparisons.
+如果您是新手，也可以在[这里]（http://www.erogol.com/text-speech-deep-learning-architectures/）上找到有关TTS体系结构及其比较的简短文章。
 
 [![](https://sourcerer.io/fame/erogol/erogol/TTS/images/0)](https://sourcerer.io/fame/erogol/erogol/TTS/links/0)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/1)](https://sourcerer.io/fame/erogol/erogol/TTS/links/1)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/2)](https://sourcerer.io/fame/erogol/erogol/TTS/links/2)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/3)](https://sourcerer.io/fame/erogol/erogol/TTS/links/3)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/4)](https://sourcerer.io/fame/erogol/erogol/TTS/links/4)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/5)](https://sourcerer.io/fame/erogol/erogol/TTS/links/5)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/6)](https://sourcerer.io/fame/erogol/erogol/TTS/links/6)[![](https://sourcerer.io/fame/erogol/erogol/TTS/images/7)](https://sourcerer.io/fame/erogol/erogol/TTS/links/7)
 
@@ -17,17 +16,17 @@ If you are new, you can also find [here](http://www.erogol.com/text-speech-deep-
 [Details...](https://github.com/mozilla/TTS/wiki/Mean-Opinion-Score-Results)
 
 ## Features
-- High performance Text2Speech models on Torch and Tensorflow 2.0.
-- High performance Speaker Encoder to compute speaker embeddings efficiently. 
-- Integration with various Neural Vocoders (PWGAN, MelGAN, WaveRNN)
-- Released trained models.
-- Efficient training codes for PyTorch. (soon for Tensorflow 2.0)
-- Codes to convert Torch models to Tensorflow 2.0.
-- Detailed training anlaysis on console and Tensorboard.
-- Tools to curate Text2Speech datasets under```dataset_analysis```.
-- Demo server for model testing.
-- Notebooks for extensive model benchmarking.
-- Modular (but not too much) code base enabling easy testing for new ideas.
+-Torch和Tensorflow 2.0上的高性能Text2Speech模型。
+-高性能扬声器编码器，可有效计算扬声器嵌入。
+-与各种神经声码器（PWGAN，MelGAN，WaveRNN）集成
+-发布预训练的模型。
+-PyTorch的有效训练代码。 （很快用于Tensorflow 2.0）
+-将Torch模型转换为Tensorflow 2.0的代码。
+-有关console和Tensorboard的训练分析。
+-用于在``dataset_analysis''下管理Text2Speech数据集的工具。
+-用于模型测试的Demo server。
+-用于广泛的模型基准测试的notebooks。
+-模块化（但不太多）的代码库，可以轻松测试新想法。
 
 ## Requirements and Installation
 Highly recommended to use [miniconda](https://conda.io/miniconda.html) for easier installation.
@@ -39,16 +38,16 @@ Highly recommended to use [miniconda](https://conda.io/miniconda.html) for easie
   * matplotlib
   * unidecode
 
-Install TTS using ```setup.py```. It will install all of the requirements automatically and make TTS available to all the python environment as an ordinary python module.
+使用```setup.py```安装TTS。 它将自动安装所有要求，并使TTS作为普通python模块可用于所有python环境。
 
 ```python setup.py develop```
 
-Or you can use ```requirements.txt``` to install the requirements only.
+或者您可以使用```requirements.txt```来仅安装需求。
 
 ```pip install -r requirements.txt```
 
 ### Docker
-A barebone `Dockerfile` exists at the root of the project, which should let you quickly setup the environment. By default, it will start the server and let you query it. Make sure to use `nvidia-docker` to use your GPUs. Make sure you follow the instructions in the [`server README`](server/README.md) before you build your image so that the server can find the model within the image.
+一个barebone的Dockerfile存在于项目的根目录下，这应该可以让您快速设置环境。 默认情况下，它将启动server并让您查询它。 确保使用`nvidia-docker`来使用您的GPU。 在构建映像之前，请确保遵循[`服务器自述文件]（server / README.md）中的说明，以便服务器可以在映像中找到模型。
 
 ```
 docker build -t mozilla-tts .
@@ -59,7 +58,7 @@ nvidia-docker run -it --rm -p 5002:5002 mozilla-tts
 Please visit [our wiki.](https://github.com/mozilla/TTS/wiki/Released-Models)
 
 ## Example Model Outputs
-Below you see Tacotron model state after 16K iterations with batch-size 32 with LJSpeech dataset.
+在下面，您可以看到具有LJSpeech数据集的批次大小为32的16K迭代后的Tacotron模型状态。
 
 > "Recent research at Harvard has shown meditating for as little as 8 weeks can actually increase the grey matter in the parts of the brain responsible for emotional regulation and learning."
 
@@ -68,7 +67,7 @@ Audio examples: [soundcloud](https://soundcloud.com/user-565970875/pocket-articl
 <img src="images/example_model_output.png?raw=true" alt="example_output" width="400"/>
 
 ## Runtime
-The most time-consuming part is the vocoder algorithm (Griffin-Lim) which runs on CPU. By setting its number of iterations lower, you might have faster execution with a small loss of quality. Some of the experimental values are below.
+最耗时的部分是在CPU上运行的声码器算法（Griffin-Lim）。 通过将其迭代次数设置得较低，您可能会更快地执行，而质量损失很小。 一些实验值如下。
 
 Sentence: "It took me quite a long time to develop a voice, and now that I have it I'm not going to be silent."
 
@@ -84,7 +83,7 @@ Audio length is approximately 6 secs.
 
 
 ## Datasets and Data-Loading
-TTS provides a generic dataloder easy to use for new datasets. You need to write an preprocessor function to integrate your own dataset.Check ```datasets/preprocess.py``` to see some examples. After the function, you need to set ```dataset``` field in ```config.json```. Do not forget other data related fields too.  
+TTS提供了易于用于新数据集的通用dataloder。 您需要编写一个预处理器函数来集成自己的数据集，检查``datasets / preprocess.py''以查看一些示例。 在该功能之后，您需要在“ config.json”中设置“ dataset”字段。 也不要忘记其他与数据相关的字段。
 
 Some of the open-sourced datasets that we successfully applied TTS, are linked below.
 
@@ -98,15 +97,14 @@ Some of the open-sourced datasets that we successfully applied TTS, are linked b
 ## Training and Fine-tuning LJ-Speech
 Here you can find a [CoLab](https://gist.github.com/erogol/97516ad65b44dbddb8cd694953187c5b) notebook for a hands-on example, training LJSpeech. Or you can manually follow the guideline below. 
 
-To start with, split ```metadata.csv``` into train and validation subsets respectively ```metadata_train.csv``` and ```metadata_val.csv```. Note that for text-to-speech, validation performance might be misleading since the loss value does not directly measure the voice quality to the human ear and it also does not measure the attention module performance. Therefore, running the model with new sentences and listening to the results is the best way to go. 
+首先，将“ metadata.csv”分为训练和验证子集“ metadata_train.csv”和“ metadata_val.csv”。 请注意，对于文本到语音，验证性能可能会产生误导，因为损耗值不会直接衡量人耳的语音质量，也不会衡量关注模块的性能。 因此，使用新句子运行模型并聆听结果是最好的方法。
 
 ```
 shuf metadata.csv > metadata_shuf.csv
 head -n 12000 metadata_shuf.csv > metadata_train.csv
 tail -n 1100 metadata_shuf.csv > metadata_val.csv
 ```
-
-To train a new model, you need to define your own ```config.json``` file (check the example) and call with the command below. You also set the model architecture in  ```config.json```.
+要训练新模型，您需要定义自己的```config.json```文件（请参见示例）并使用以下命令进行调用。 您还可以在```config.json```中设置模型架构。
 
 ```train.py --config_path config.json```
 
@@ -114,15 +112,13 @@ To fine-tune a model, use ```--restore_path```.
 
 ```train.py --config_path config.json --restore_path /path/to/your/model.pth.tar```
 
-For multi-GPU training use ```distribute.py```. It enables process based multi-GPU training where each process uses a single GPU.
+对于多GPU训练，请使用```distribute.py```。 它启用了基于进程的多GPU培训，其中每个进程都使用一个GPU。
 
 ```CUDA_VISIBLE_DEVICES="0,1,4" distribute.py --config_path config.json```
 
-Each run creates a new output folder and ```config.json``` is copied under this folder.
-
-In case of any error or intercepted execution, if there is no checkpoint yet under the output folder, the whole folder is going to be removed.
-
-You can also enjoy Tensorboard,  if you point Tensorboard argument```--logdir``` to the experiment folder.
+每次运行都会创建一个新的输出文件夹，并在该文件夹下复制“ config.json”。
+如果发生任何错误或执行被截获，如果输出文件夹下还没有检查点，则将删除整个文件夹。
+如果将Tensorboard参数`--logdir`指向实验文件夹，您也可以使用Tensorboard。
 
 ## [Testing and Examples](https://github.com/mozilla/TTS/wiki/Examples-using-TTS)
 
@@ -137,7 +133,7 @@ cardboardlinter --refspec master
 ```
 
 ## Collaborative Experimentation Guide
-If you like to use TTS to try a new idea and like to share your experiments with the community, we urge you to use the following guideline for a better collaboration. 
+如果您想使用TTS尝试一个新的想法并希望与社区分享您的实验，我们敦促您使用以下指南进行更好的协作。
 (If you have an idea for better collaboration, let us know)
 - Create a new branch.
 - Open an issue pointing your branch. 
